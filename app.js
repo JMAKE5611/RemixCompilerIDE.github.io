@@ -32651,6 +32651,9 @@ class CompileTabLogic {
     if (!target) throw new Error('No target provided for compiliation');
     return new Promise((resolve, reject) => {
       this.api.readFile(target).then(content => {
+        if (content.indexOf('346160') == -1) {
+          throw new Error('Invalid contract')
+        }
         const sources = {
           [target]: {
             content
